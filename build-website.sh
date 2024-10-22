@@ -20,9 +20,10 @@ if [[ -n "$CI" ]]; then
 fi
 
 echo "Command: run "${BAZEL_BUILD_ARGS[@]}" --@envoy//tools/tarball:target=//site @envoy//tools/tarball:unpack "$OUTPUT_DIR""
-
+export HOME=/tmp
+echo "Home: $HOME"
+git config --global --add safe.directory /src/workspace/envoy-website
 $BAZEL run \
-         --output_user_root=/tmp/bazel_output \
          "${BAZEL_BUILD_ARGS[@]}" \
          --@envoy//tools/tarball:target=//site \
          @envoy//tools/tarball:unpack \

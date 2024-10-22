@@ -10,7 +10,7 @@ services:
     command: bazel run //site:live
     volumes:
     - .:/src/workspace/envoy-website
-    - ~/.cache/bazel:/$HOME/.cache/bazel
+    #- ~/.cache/bazel:/$HOME/.cache/bazel
     - ~/.cache/bazelisk:/$HOME/.cache/bazelisk
     working_dir: /src/workspace/envoy-website
     environment:
@@ -30,7 +30,7 @@ services:
               //site:live_docs'
     volumes:
     - .:/src/workspace/envoy-website
-    - ~/.cache/bazel:/$HOME/.cache/bazel
+    #- ~/.cache/bazel:/$HOME/.cache/bazel
     - ~/.cache/bazelisk:/$HOME/.cache/bazelisk
     working_dir: /src/workspace/envoy-website
     environment:
@@ -61,7 +61,7 @@ services:
     volumes:
     - .:/src/workspace/envoy-website
     - ${ENVOY_SRC_DIR:-../envoy}:/src/workspace/envoy
-    - ~/.cache/bazel:/$HOME/.cache/bazel
+    #- ~/.cache/bazel:/$HOME/.cache/bazel
     - ~/.cache/bazelisk:/$HOME/.cache/bazelisk
     working_dir: /src/workspace/envoy-website
     environment:
