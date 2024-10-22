@@ -11,6 +11,7 @@ if  [[ -e "$OUTPUT_DIR" ]]; then
     rm -rf "${OUTPUT_DIR:?}"/*
 fi
 
+echo "Value of output dir (${OUTPUT_DIR})"
 mkdir -p "${OUTPUT_DIR}"
 BAZEL_BUILD_ARGS=()
 
@@ -18,7 +19,10 @@ if [[ -n "$CI" ]]; then
     BAZEL_BUILD_ARGS=(--config=ci)
 fi
 
+echo "Command: run "${BAZEL_BUILD_ARGS[@]}" --@envoy//tools/tarball:target=//site @envoy//tools/tarball:unpack "$OUTPUT_DIR""
+
 $BAZEL run \
+         --output_user_root=/tmp/bazel_output \
          "${BAZEL_BUILD_ARGS[@]}" \
          --@envoy//tools/tarball:target=//site \
          @envoy//tools/tarball:unpack \

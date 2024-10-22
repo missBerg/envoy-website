@@ -10,7 +10,7 @@ services:
     command: bazel run //site:live
     volumes:
     - .:/src/workspace/envoy-website
-    #-  ~/.cache/bazel:/$HOME/.cache/bazel
+    - ~/.cache/bazel:/$HOME/.cache/bazel
     - ~/.cache/bazelisk:/$HOME/.cache/bazelisk
     working_dir: /src/workspace/envoy-website
     environment:
@@ -30,11 +30,11 @@ services:
               //site:live_docs'
     volumes:
     - .:/src/workspace/envoy-website
-    #- ~/.cache/bazel:/$HOME/.cache/bazel
+    - ~/.cache/bazel:/$HOME/.cache/bazel
     - ~/.cache/bazelisk:/$HOME/.cache/bazelisk
     working_dir: /src/workspace/envoy-website
     environment:
-      LOCAL_UID: ${UID:?"`UID` must be set, try `export UID`"}
+      # LOCAL_UID: ${UID:?"`UID` must be set, try `export UID`"}
       LOCAL_USER_NAME: $USERNAME
       LOCAL_USER_HOME: $HOME
 
@@ -50,8 +50,8 @@ services:
     working_dir: /src/workspace/envoy-website
     environment:
       LOCAL_UID: ${UID:?"`UID` must be set, try `export UID`"}
-      LOCAL_USER_NAME: $USERNAME
-      LOCAL_USER_HOME: $HOME
+      LOCAL_USER_NAME: ${USERNAME:?"`USERNAME` must be set, try `export USERNAME`"}
+      LOCAL_USER_HOME: ${HOME:?"`HOME` must be set, try `export HOME`"}
 
   update:
     build:
@@ -61,7 +61,7 @@ services:
     volumes:
     - .:/src/workspace/envoy-website
     - ${ENVOY_SRC_DIR:-../envoy}:/src/workspace/envoy
-    #- ~/.cache/bazel:/$HOME/.cache/bazel
+    - ~/.cache/bazel:/$HOME/.cache/bazel
     - ~/.cache/bazelisk:/$HOME/.cache/bazelisk
     working_dir: /src/workspace/envoy-website
     environment:
