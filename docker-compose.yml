@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   live:
     build:
@@ -49,6 +47,7 @@ services:
     - ~/.cache/bazelisk:/$HOME/.cache/bazelisk
     working_dir: /src/workspace/envoy-website
     environment:
+      BAZEL_BUILD_OPTIONS: $BAZEL_BUILD_OPTIONS
       LOCAL_UID: ${UID:?"`UID` must be set, try `export UID`"}
       LOCAL_USER_NAME: ${USERNAME:?"`USERNAME` must be set, try `export USERNAME`"}
       LOCAL_USER_HOME: ${HOME:?"`HOME` must be set, try `export HOME`"}
